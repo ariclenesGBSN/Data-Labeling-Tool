@@ -1,0 +1,130 @@
+.text-editor-header {
+    width: 100%;
+    padding: 0.25rem;
+    z-index: 5;
+    background: #293241;
+}
+
+.text-editor-header > div {
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    padding-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 767px) {
+    .text-editor-header > div {
+        border: 0;
+        padding-left: 0;
+    }
+}
+
+.text-editor-header > div:first-child {
+    border: 0;
+    padding-left: 0;
+}
+
+.text-editor-header-btn {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.text-editor-header-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.text-editor-header-btn > img {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: -4px;
+}
+
+.text-editor-header.affix {
+    position: fixed;
+    top: 0;
+}
+
+.text-editor-content {
+    width: 100%;
+    min-height: 300px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0.25rem;
+    border: 1px solid #999;
+    border-top: 0;
+    background: #fff;
+    font-family: "Roboto";
+    font-size: 0.875rem;
+    cursor: text;
+}
+
+.text-editor-content:focus {
+    border-color: #EE6C4D;
+    outline: 0;
+}
+
+.text-editor-content img {
+    display: none;
+    width: 100%;
+}
+
+.text-editor-content ol,
+.text-editor-content ul {
+    display: inline-block;
+}
+
+.text-editor-content ol li,
+.text-editor-content ul li {
+    text-align: left !important;
+}
+
+.text-editor-content iframe {
+    display: inline-block !important;
+}
+
+twitterwidget {
+    display: inline-block !important;
+}
+
+.text-editor-upload-preview {
+    max-width: 90%;
+    max-height: 150px;
+    margin: 0 auto;
+}
+
+.text-editor-selectable {
+    cursor: pointer;
+    width: 100%;
+}
+
+.text-editor-selected {
+    outline: 2px solid #0099FF;
+}
+
+.text-editor-image-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #0099FF;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+.current-div {
+    /*    background-color: #eee;*/
+}
+
+.text-editor-img-text {
+    font-size: 0.875rem;
+    font-weight: 700;
+    opacity: 0.67;
+    margin: 0.25rem 0;
+    margin-bottom: 1rem;
+}

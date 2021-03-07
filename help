@@ -1,0 +1,8 @@
+<!--setup_templates  {% elif category == 'html' %}<i class="icon code" title="HTML sources"></i>
+  {% elif category == 'other' %}<i class="icon archive" title="Other sources"></i>
+  {% elif category == 'other2' %}<i class="icon archive" title="Yet more other sources"></i>
+  {% elif category == 'time-series' %}<i class="icon wave square" title="Time series"></i>
+  {% elif category == 'layouts' %}<i class="icon eye" title="View layout examples"></i>
+  {% elif category == 'per-region' %}<i class="icon vector square" title="Per region examples"></i>
+  {% elif category == 'nested' %}<i class="icon bullseye" title="Nested examples with conditional behavior"></i>
+  -->

@@ -1,0 +1,29 @@
+{
+ "completions": [
+  {
+   "created_at": 1615151102,
+   "id": 1001,
+   "lead_time": 5.233,
+   "result": [
+    {
+     "from_name": "label",
+     "id": "FQFNxbBKWD",
+     "to_name": "text",
+     "type": "labels",
+     "value": {
+      "end": 7,
+      "labels": [
+       "Fact"
+      ],
+      "start": 4,
+      "text": "are"
+     }
+    }
+   ]
+  }
+ ],
+ "data": {
+  "text": "you are my friend"
+ },
+ "id": 1
+}

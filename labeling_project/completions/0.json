@@ -1,0 +1,43 @@
+{
+ "completions": [
+  {
+   "created_at": 1615151093,
+   "id": 1,
+   "lead_time": 16.715,
+   "result": [
+    {
+     "from_name": "label",
+     "id": "9xLRw6Z9Tr",
+     "to_name": "text",
+     "type": "labels",
+     "value": {
+      "end": 11,
+      "labels": [
+       "Language"
+      ],
+      "start": 7,
+      "text": "food"
+     }
+    },
+    {
+     "from_name": "label",
+     "id": "_4KBs4Kb6V",
+     "to_name": "text",
+     "type": "labels",
+     "value": {
+      "end": 1,
+      "labels": [
+       "Ordinal"
+      ],
+      "start": 0,
+      "text": "I"
+     }
+    }
+   ]
+  }
+ ],
+ "data": {
+  "text": "I like food"
+ },
+ "id": 0
+}

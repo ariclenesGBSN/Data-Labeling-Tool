@@ -1,0 +1,107 @@
+.fc-toolbar.fc-header-toolbar {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.fc-toolbar .fc-right {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.fc-view-container {
+    background: #fff;
+}
+
+.fc-day-header.fc-widget-header {
+    padding: 0.5rem;
+    background: #293241;
+    color: #fff;
+    border: 0;
+}
+
+.fc-other-month {
+    background: #FAFAFB;
+}
+
+.fc-day {
+    cursor: pointer;
+}
+
+.clicked-day {
+    background: rgba(238, 108, 77, 0.1);
+}
+
+.fc-day-number {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.25rem;
+    margin-right: 0.25rem;
+    border-radius: 50%;
+    padding: 0;
+    text-align: center;
+}
+
+.fc-day-top.fc-wed.fc-today .fc-day-number {
+    background: #EE6C4D;
+    color: #fff;
+}
+
+.related-article {
+    position: relative;
+    background: #fff;
+    -webkit-transition: all 50ms ease-out;
+    -moz-transition: all 50ms ease-out;
+    -o-transition: all 50ms ease-out;
+    transition: all 50ms ease-out;
+    z-index: 3;
+}
+
+.unpublished-list {
+    -webkit-transition: all 200ms ease-out;
+    -moz-transition: all 200ms ease-out;
+    -o-transition: all 200ms ease-out;
+    transition: all 200ms ease-out;
+}
+
+.schedule-span {
+    background: #EAECF0;
+    padding: 0.25rem 0.275rem;
+    border-radius: 5px;
+}
+
+.fc-event {
+    border-color: transparent;
+    color: #fff !important;
+    font-size: 0.75rem;
+}
+
+.fc-event-dot {
+    background: #fff;
+}
+
+.fc-content {
+    font-size: 0.75rem;
+    padding: 0.25rem;
+}
+
+.fc-title {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fc-resizer.fc-end-resizer {
+    display: none !important;
+}
+
+.fc-list-item {
+    color: #fff;
+}
+
+.insights-manage-wrapper {
+    padding: 0.5rem;
+    background: #EAECF0;
+}

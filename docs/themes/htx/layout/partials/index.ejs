@@ -1,0 +1,575 @@
+<%- css('css/new-index') %>
+
+<%- partial('partials/header', { context: 'nav' }) %>
+<script>
+const menu = document.querySelector('.head__main')
+menu && menu.classList.add('main__page__header')
+</script>
+<div class="main__block">
+  <div class="container">
+    <div class="outer__main">
+      <div class="main__content">
+        <div class="left__content">
+          <h1>Open Source <br>
+          Data  <span>Labeling</span>  Tool</h1>
+          <p>Data Science starts with data. <br>
+          Label Studio removes the pain labeling it.</p>
+          <div class="release__info">
+            <a href="/blog/release-090-data-management-improvements.html" class="release__info--inner">
+              <span>New</span>
+              <p>Release <span>0.9.1</span></p>
+            </a>
+            <p>Explore and improve your datasets!</p>
+          </div>
+          <div class="commit__info">
+            <a href="https://github.com/heartexlabs/label-studio" class="commit--inner" target="_blank">
+              <span class="star__span"><img src="<%- url_for("/images/new/staricon.svg") %>" alt="starticon"> Star</span>
+              <span class="star__counter loading"></span>
+            </a>
+            <p class="last__commit">Last commit: <span></span></p>
+          </div>
+          <script>
+             window.onload = function() {
+               function nice_format(n) {
+                 const prefixes = ['', 'k', 'M']
+                 const level = Math.floor(Math.floor(Math.log10(n)) / 3)
+                 const thousands = n / Math.pow(10, 3 * level)
+                 const short = thousands
+                   .toPrecision(thousands > 99 ? 3 : 2)
+                   .replace(/\.0+$|(\.\d)\d+$/g, '$1') // leave max one digit after dot
+                 return short + prefixes[level]
+               }
+
+               const star_counter = document.querySelector('.star__counter')
+               const star_counter_full = document.querySelector('.star__counter_full')
+               const last_commit = document.querySelector('.last__commit span')
+               fetch('https://api.github.com/repos/heartexlabs/label-studio')
+                 .then(res => res.json())
+                 .then(res => {
+                   const date = new Date(res.pushed_at).toLocaleString('en', {
+                     year: 'numeric',
+                     month: 'short',
+                     day: 'numeric'
+                   })
+                   last_commit.textContent = date
+                   const stars = res.stargazers_count
+                   if (stars) {
+                     star_counter.textContent = nice_format(stars)
+                     star_counter_full.textContent = stars
+                     star_counter.classList.remove('loading')
+                     star_counter_full.classList.remove('loading')
+                   }
+                 })
+             }
+          </script>
+        </div>
+        <div class="right__content">
+          <div class="content__switcher">
+            <h6>Quick Start</h6>
+            <div class="switcher__inner">
+              <ul>
+                <li class="active__switcher"><a href="#" data-block="content1">pip</a></li>
+                <li><a href="#" data-block="content2">Docker</a></li>
+                <li><a href="#" data-block="content3">Git</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="content__wrapper">
+            <div class="content__elem content1">
+              <div class="desktop__code">	      
+                <p class="title__code"><span class="counter">1</span># Install the Package</p>
+                <p class="code__content"><span class="counter">2</span>pip install -U label-studio</p>
+                <p class="spacer"><span class="counter">3</span></p>
+                <p class="title__code"><span class="counter">4</span># Create a New Project</p>
+                <p class="code__content"><span class="counter">5</span>label-studio init my_project</p>
+                <p class="spacer"><span class="counter">6</span></p>
+                <p class="title__code"><span class="counter">7</span># Launch It!</p>
+                <p class="code__content"><span class="counter">8</span>label-studio start my_project</p>
+              </div>
+              <div class="mobile__code">
+                <p class="title__code"><span class="counter">1</span># Install the Package</p>
+                <p class="code__content"><span class="counter">2</span>pip install label-studio</p>
+                <p class="spacer"><span class="counter">3</span></p>
+                <p class="title__code"><span class="counter">4</span># Create a New Project</p>
+                <p class="code__content"><span class="counter">5</span>label-studio init</p>
+                <p class="code__content"><span class="counter">6</span>my_project</p>
+                <p class="spacer"><span class="counter">7</span></p>
+                <p class="title__code"><span class="counter">8</span># Launch It!</p>
+                <p class="code__content"><span class="counter">9</span>label-studio start</p>
+                <p class="code__content"><span class="counter">10</span>my_project</p>
+              </div>
+            </div>
+
+            <div class="content__elem content2" style="display:none;">
+              <div class="desktop__code">
+                <p class="title__code"><span class="counter">1</span># Running latest docker version </p>
+                <p class="code__content"><span class="counter">2</span>docker run --rm -p 8080:8080 -v `pwd`/my_project:/label-studio/my_project --name label-studio heartexlabs/label-studio:latest label-studio start my_project --init</p>
+                <p class="spacer"><span class="counter">3</span></p>
+                <p class="title__code"><span class="counter">4</span># Now visit http://localhost:8080/</p>
+              </div>
+              <div class="mobile__code">
+	      	<p class="title__code"><span class="counter">1</span># Running latest docker version </p>
+                <p class="code__content"><span class="counter">2</span>docker run --rm -p 8080:8080 -v `pwd`/my_project:/label-studio/my_project --name label-studio heartexlabs/label-studio:latest label-studio start my_project --init</p>
+                <p class="spacer"><span class="counter">3</span></p>
+                <p class="title__code"><span class="counter">4</span># Now visit http://localhost:8080/</p>
+              </div>
+            </div>
+
+            <div class="content__elem content3" style="display:none;">
+              <div class="desktop__code">
+                <p class="title__code"><span class="counter">1</span># Clone repo</p>
+                <p class="code__content"><span class="counter">2</span>git clone https://github.com/heartexlabs/label-studio.git</p>
+                <p class="spacer"><span class="counter">3</span></p>
+                <p class="title__code"><span class="counter">4</span># Install dependencies</p>
+                <p class="code__content"><span class="counter">5</span>cd label-studio</p>
+                <p class="code__content"><span class="counter">6</span>pip install -e .</p>
+                <p class="spacer"><span class="counter">7</span></p>
+                <p class="title__code"><span class="counter">8</span># Launch</p>
+                <p class="code__content"><span class="counter">9</span>python label_studio/server.py start labeling_project --init</p>
+              </div>
+              <div class="mobile__code">
+                <p class="title__code"><span class="counter">1</span># Clone repo</p>
+                <p class="code__content"><span class="counter">2</span>git clone https://github.com/heartexlabs/label-studio.git</p>
+                <p class="spacer"><span class="counter">3</span></p>
+                <p class="title__code"><span class="counter">4</span># Install dependencies</p>
+                <p class="code__content"><span class="counter">5</span>cd label-studio</p>
+                <p class="code__content"><span class="counter">6</span>pip install -e .</p>
+                <p class="spacer"><span class="counter">7</span></p>
+                <p class="title__code"><span class="counter">8</span># Launch</p>
+                <p class="code__content"><span class="counter">9</span>python label_studio/server.py start labeling_project --init</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="date__type">
+  <div class="container">
+    <div class="outer__date">
+      <div class="head__date--type">
+        <h6>Label Every Data Type</h6>
+        <div class="switcher__inner">
+          <ul>
+            <li class="active__switcher"><a href="#" data-block="date1">Images</a></li>
+            <li><a href="#" data-block="date2">Audios</a></li>
+            <li><a href="#" data-block="date3">Texts</a></li>
+            <li><a href="#" data-block="date4">Time Series</a></li>
+            <li><a href="#" data-block="date6">Multi-Domain</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content__date">
+        <div class="elem__date date1">
+          <div class="inner__elem--date">
+            <div class="left__date">
+              <h2>Computer Vision</h2>
+              <div class="inner__date--content">
+                <div class="elem__inner--date">
+                  <span>Image Classification</span>
+                  <p>Put images into categories</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Object Detection</span>
+                  <p>Detect objects on image, bboxes, polygons, circular, and keypoints supported</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Semantic Segmentation</span>
+                  <p>Partition image into multiple segments. Use ML models to pre-label and optimize the process</p>
+                </div>
+              </div>
+            </div>
+            <div class="right__date">
+              <img src="<%- url_for("/images/new/images-object-detection.png") %>" alt="date">
+            </div>
+          </div>
+        </div>
+        <div class="elem__date date2" style="display:none;">
+          <div class="inner__elem--date">
+            <div class="left__date">
+              <h2>Audio &amp; Speech Applications</h2>
+              <div class="inner__date--content">
+                <div class="elem__inner--date">
+                  <span>Classification</span>
+                  <p>Put audio into categories</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Speaker Diarization</span>
+                  <p>Partition an input audio stream into homogeneous segments according to the speaker identity</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Emotion Recognition</span>
+                  <p>Tag and identify emotion from the audio.</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Audio Transcription</span>
+                  <p>Write down verbal communication in text</p>
+                </div>
+              </div>
+            </div>
+            <div class="right__date">
+              <img src="<%- url_for("/images/new/speech-segmentation-example.png") %>" alt="date">
+            </div>
+          </div>
+        </div>
+        <div class="elem__date date3" style="display:none;">
+          <div class="inner__elem--date">
+            <div class="left__date">
+              <h2>NLP, Documents, Chatbots, Transcripts</h2>
+              <div class="inner__date--content">
+                <div class="elem__inner--date">
+                  <span>Classification</span>
+                  <p>Classify document into one or multiple categories. Use taxonomies of up-to 10000 classes</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Named Entity</span>
+                  <p>‍Extract and put into pre-defined categories relevant bits of information</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Question Answering</span>
+                  <p>‍Answer questions based on context</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Sentiment Analysis</span>
+                  <p>Determine whether document is positive, negative or neutral</p>
+                </div>
+              </div>
+            </div>
+            <div class="right__date">
+              <img src="<%- url_for("/images/new/text-named-entity-labeling.png") %>" alt="date">
+            </div>
+          </div>
+        </div>
+        <div class="elem__date date4" style="display:none;">
+          <div class="inner__elem--date">
+            <div class="left__date">
+              <h2>Robots, Sensors, IoT Devices</h2>
+              <div class="inner__date--content">
+                <div class="elem__inner--date">
+                  <span>Classification</span>
+                  <p>Put time series into categories</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Segmentation</span>
+                  <p>‍Identify regions relevant to activity type you're build your ML algorithm for</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Event Recognition</span>
+                  <p>Label single events on plots of time series data</p>
+                </div>
+              </div>
+            </div>
+            <div class="right__date">
+              <img src="<%- url_for("/images/new/time-series-multi-uni.png") %>" alt="date">
+            </div>
+          </div>
+        </div>
+        <div class="elem__date date5" style="display:none;">
+          <div class="inner__elem--date">
+            <div class="left__date">
+              <h2>Video Processing</h2>
+              <div class="inner__date--content">
+                <div class="elem__inner--date">
+                  <span>Object Tracking</span>
+                  <p>Track single or multiple objects inside video stream</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Video Object Segmentation</span>
+                  <p>‍Separate objects from background inside video</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Action Classification</span>
+                  <p>Tag and identify action from the video segment</p>
+                </div>
+              </div>
+            </div>
+            <div class="right__date">
+              <img src="<%- url_for("/images/new/date1.svg") %>" alt="date">
+            </div>
+          </div>
+        </div>
+        <div class="elem__date date6" style="display:none;">
+          <div class="inner__elem--date">
+            <div class="left__date">
+              <h2>Multi-Domain Applications</h2>
+              <div class="inner__date--content">
+                <div class="elem__inner--date">
+                  <span>Dialogues Processing</span>
+                  <p>Call center recording can be simultaneously transcribed and processed as text</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Optical Character Recognition</span>
+                  <p>Put an image and the text right next to each other</p>
+                </div>
+                <div class="elem__inner--date">
+                  <span>Time Series with Reference</span>
+                  <p>‍‍Use video or audio streams to easier segment time series data</p>
+                </div>
+              </div>
+            </div>
+            <div class="right__date">
+              <img src="<%- url_for("/images/new/multi-domain-labeling.png") %>" alt="date">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="label__studio--block">
+  <div class="container">
+      <div class="outer__label">
+      <img src="<%- url_for("/images/new/leftoverlay.svg") %>" alt="leftoverlay" class="left__overlay">
+      <img src="<%- url_for("/images/new/rightoverlay.svg") %>" alt="rightoverlay" class="right__overlay">
+      <div class="head__label">
+        <h2>Already Using Label Studio</h2>
+      </div>
+      <div class="content__label">
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo1.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo2.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo3.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo4.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo5.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo6.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo7.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo1.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo2.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo3.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo4.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo5.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo6.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo7.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo1.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo2.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo3.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo4.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo5.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo6.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo7.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo1.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo2.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo3.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo4.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo5.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo6.svg") %>" alt="logo">
+        </div>
+        <div class="elem__label">
+          <img src="<%- url_for("/images/new/logo7.svg") %>" alt="logo">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="community__block">
+  <div class="container">
+    <img src="<%- url_for("/images/new/opossum.svg") %>" alt="opossum" class="opossum__image">
+    <div class="outer__community">
+      <div class="head__community">
+        <h2>Global Community</h2>
+      </div>
+      <div class="inner__community">
+        <img src="<%- url_for("/images/new/overlayleft.svg") %>" alt="overlayleft" class="lf__overlay">
+        <img src="<%- url_for("/images/new/overlayright.svg") %>" alt="overlayright" class="rg__overlay">
+        <div class="info__community">
+          <div class="column__community">
+            <p>Join the largest community of Data Scientists working on enhancing their models</p>
+            <p>Model frameworks integrations</p>
+          </div>
+          <div class="column__community">
+            <p>Slack channel with more than <b><span>950+</span></b> members, <b><span>1000+</span></b> threads,
+              <b><span>3000+</span> </b>answers, and <b><span class="star__counter_full loading">plenty of</span></b> github stars.</p>
+            <p>Millions of data items labeled</p>
+          </div>
+        </div>
+        <div class="community__main">
+          <h6>Thanks to Core Contributors</h6>
+          <div class="community__wrapper">
+
+            <div class="elem__community">
+              <div class="community__image">
+                <img src="<%- url_for("/images/new/communityborder.svg") %>" alt="communityborder" class="community__border">
+                <img src="https://avatars3.githubusercontent.com/u/28912?v=4" class="community__team">
+              </div>
+              <div class="community__info">
+                <p></p>
+                <a href="https://github.com/deppp"><span>@</span> deppp</a>
+              </div>
+            </div>
+            <div class="community__spacer"></div>
+          </div>
+        </div>
+        <script>
+        fetch('https://api.github.com/repos/heartexlabs/label-studio/contributors')
+        .then(res => res.json())
+        .then(users => {
+          const sample = document.querySelector('.elem__community')
+          if (!sample) return
+          const container = sample.parentNode
+          container.removeChild(sample)
+          // shuffle them
+          users.sort(() => Math.random() - 0.5).forEach(user => {
+            if (user.type !== "User") return
+            const el = sample.cloneNode(true)
+            el.querySelector('img.community__team').src = user.avatar_url
+            el.querySelector('.community__info p').textContent = user.name || ""
+            el.querySelector('.community__info a').href = user.html_url
+            el.querySelector('.community__info a').innerHTML = "<span>@</span> " + user.login
+            container.appendChild(el)
+          })
+        })
+        </script>
+        <div class="after__community">
+          <a href="https://join.slack.com/t/label-studio/shared_invite/zt-cr8b7ygm-6L45z7biEBw4HXa5A2b5pw">
+            <span><img src="<%- url_for("/images/new/logoslack.svg") %>" alt="logoslack"></span>
+            Join Slack
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bottom__part">
+  <div class="articles__block">
+    <div class="container">
+      <div class="head__articles">
+        <h2>Latest Articles</h2>
+        <p>Improving & evaluating models accuracy with labeling</p>
+      </div>
+      <div class="inner__articles">
+        <div class="elem__article">
+          <h6>How to Fine-Tune BERT to Classify Chat Conversations</h6>
+          <p>Slack chats can become messy with time, proving difficult to extract meaningful information…</p>
+          <div class="article__button">
+            <a href="https://towardsdatascience.com/how-to-finetune-bert-to-classify-your-slack-chats-without-coding-3a7002936bcf">Read More →</a>
+          </div>
+        </div>
+        <div class="elem__article">
+          <h6>Time Series Data Labeling</h6>
+          <p>Time series is everywhere! Devices, sensors and events produce time series, for example, your heartbeat…</p>
+          <div class="article__button">
+            <a href="/blog/release-080-time-series-labeling.html">Read More →</a>
+          </div>
+        </div>
+        <div class="elem__article">
+          <h6>Learn Faster with Smarter Data Labeling</h6>
+          <p>Findings on optimizing the labeling process with different active learning techniques…</p>
+          <div class="article__button">
+            <a href="https://towardsdatascience.com/learn-faster-with-smarter-data-labeling-15d0272614c4">Read More →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="outer__footer">
+        <div class="elem__footer">
+          <a href="#">
+            <img src="<%- url_for("/images/new/logofooter.svg") %>" alt="logofooter">
+          </a>
+          <ul class="social__list">
+            <li><a href="https://join.slack.com/t/label-studio/shared_invite/zt-cr8b7ygm-6L45z7biEBw4HXa5A2b5pw"><img src="<%- url_for("/images/new/foot3.svg") %>" alt="footerlogo"></a></li>
+            <li><a href="https://twitter.com/heartexlabs"><img src="<%- url_for("/images/new/foot2.svg") %>" alt="footerlogo"></a></li>
+	    <li><a href="https://www.linkedin.com/company/heartex/"><img src="<%- url_for("/images/new/foot5.svg") %>" alt="footerlogo"></a></li>            
+	    <li><a href="https://github.com/heartexlabs/"><img src="<%- url_for("/images/new/foot4.svg") %>" alt="footerlogo"></a></li>            
+          </ul>
+          <p class="copyright">© <%= new Date().getFullYear(); %> Heartex, Inc.</p>
+        </div>
+        <div class="elem__footer">
+          <p>Products</p>
+          <ul>
+            <li><a href="https://heartex.com">Enterprise</a></li>
+            <li><a href="https://labelstud.io">Label Studio</a></li>
+          </ul>
+        </div>
+        <div class="elem__footer">
+          <p>Templates</p>
+          <ul>
+            <li><a href="/templates/image_classification.html">Image Classification</a></li>
+            <li><a href="/templates/named_entity.html">Named Entity Recognition</a></li>
+            <li><a href="/templates/transcribe_audio.html">Audio Transcription</a></li>
+            <li><a href="/templates/time_series.html">Time Series Labeling</a></li>
+            <li><a href="/templates/image_segmentation.html">Image Segmentation</a></li>
+          </ul>
+        </div>
+        <div class="elem__footer">
+          <p>Resources</p>
+          <ul>
+            <li><a href="https://app.labelstud.io">Demo App</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/guide">Guide</a></li>
+            <li><a href="#">What's New</a></li>
+          </ul>
+        </div>
+        <div class="elem__footer">
+          <p>Company</p>
+          <ul>
+            <li><a href="https://heartex.com/company/about">About Us</a></li>
+            <li><a href="https://apply.workable.com/heartex">Careers</a></li>
+            <li><a href="mailto:hi@heartex.com">Contact Us</a></li>
+            <li><a href="https://heartex.com/company/privacy-policy">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="small__copyright">
+          <p>© 2021 Heartex, Inc.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="<%- url_for("/js/new-index.js") %>"></script>
